@@ -8,7 +8,7 @@ def index():
 
 @app.route("/<int:celsius>")
 def fahrenheit_from(celsius):
-    print ("converting celcius to fahrenheit", flush=True)
+    print ("Converting celcius to fahrenheit", flush=True)
     """Convert Celsius to Fahrenheit degrees."""
     fahrenheit = float(celsius) * 9 / 5 + 32
     fahrenheit = round(fahrenheit, 3)  # Round to three decimal places
