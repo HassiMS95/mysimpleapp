@@ -1,18 +1,19 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "Congratulations, it's a web app!"
+    return render_template('index.html')
 
-@app.route("/<int:celsius>")
-def fahrenheit_from(celsius):
-    print ("Converting celcius to fahrenheit", flush=True)
-    """Convert Celsius to Fahrenheit degrees."""
-    fahrenheit = float(celsius) * 9 / 5 + 32
-    fahrenheit = round(fahrenheit, 3)  # Round to three decimal places
-    return str(fahrenheit)
+@app.route("/c2f/<value>")
+def convert_temperature(value):
+    try:
+       fahrenheit = float(value) * 9 / 5 + 32
+       fahrenheit = round(fahrenheit, 3)  # Round to three decimal places
+    except:
+       return render_template('index.html')
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080, debug=True)
+    return render_template('convert1.html', var1=value, var2=fahrenheit)
+
+

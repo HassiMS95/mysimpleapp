@@ -1,9 +1,11 @@
-FROM ubuntu
+FROM python:3.9-slim-bullseye
 
-RUN apt-get update && apt-get install -y python python3-pip
+WORKDIR /code
+
+ENV FLASK_APP=app.py
 
 RUN pip install flask 
 
-COPY app.py /opt/
+COPY . .
 
-ENTRYPOINT FLASK_APP=/opt/app.py flask run --host=0.0.0.0 --port=8080
+CMD ["flask", "run", "--host=0.0.0.0", "--port=8080"]
