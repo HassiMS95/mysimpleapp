@@ -6,14 +6,15 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route("/c2f/<value>")
+@app.route("/f2c/<value>")
 def convert_temperature(value):
     try:
-       fahrenheit = float(value) * 9 / 5 + 32
-       fahrenheit = round(fahrenheit, 3)  # Round to three decimal places
+       fahrenheit = float(value)
+       celsius = (fahrenheit - 32) * 5 / 9
+       celsius = round(celsius, 3)  # Round to three decimal places
     except:
        return render_template('index.html')
 
-    return render_template('convert1.html', var1=value, var2=fahrenheit)
+    return render_template('convert1.html', var1=value, var2=celsius)
 
 
